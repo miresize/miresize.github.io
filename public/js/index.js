@@ -16,6 +16,7 @@ $(function () {
         dropDownSelectDevice.val('aa')
     });
 
+
     aPickImage.click(function () {
         pickImage(function (file) {
             console.log(file);
