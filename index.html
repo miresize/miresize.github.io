@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MIResize</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="public/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="public/css/airesize.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo left"><i class="material-icons">developer_mode</i>AIResize</a>
+            <ul class="right">
+                <li>
+                    <a id="dropdown_trigger_select_device" data-target="devices-list">Select Device<i class="material-icons right">arrow_drop_down</i></a>
+                    <ul id="devices-list" class="dropdown-content">
+                        <li><a id="a-device-android">Android</a></li>
+                        <li><a id="a-device-ios">IOS</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<main>
+
+    <div class="row">
+        <!--Right Panel-->
+        <div class="col xl3 offset-xl9 l4 offset-l8 m5 offset-m7 m1 no-padding">
+            <!--Image Selector-->
+            <div>
+                <img class="source-image" src="public/images/img_placeholder.jpg" id="img_source_img"/>
+                <a class="btn-floating pulse btn-large waves-effect waves-light right margin_right margin_top" id="a_pick_image"><i class="material-icons">add</i></a>
+            </div>
+            <div class="input-field col s12">
+                <input type="text" id="atc_width" class="autocomplete">
+                <label for="atc_width">Width</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="text" id="atc_height" class="autocomplete">
+                <label for="atc_height">Height</label>
+            </div>
+            <a class="btn-floating btn-large waves-effect waves-light right margin_right"><i class="material-icons">done</i></a>
+            </div>
+    </div>
+</main>
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="public/js/materialize.js"></script>
+<script type="text/javascript" src="public/js/classes.min.js"></script>
+<script type="text/javascript" src="public/js/functions.min.js"></script>
+<script type="text/javascript" src="public/js/index.min.js"></script>
+
+</body>
+</html>

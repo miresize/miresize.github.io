@@ -1,0 +1,18 @@
+@charset "UTF-8";
+@import "components/color-variables";
+
+.source-image {
+  width: 100%;
+  padding: 1px;
+  background-color: color('grey','lighten-2');
+  border: 1px dashed color('grey','lighten-1');
+}
+
+
+.margin_top{
+  margin-top: 10px;
+}
+
+.margin_right {
+  margin-right: 10px;
+}
