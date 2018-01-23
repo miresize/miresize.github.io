@@ -2,10 +2,11 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/public/js/index.min.js" />
+        <item url="file://$PROJECT_DIR$/public/js/controls.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/materialize.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/functions.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/classes.min.js" />
+        <item url="file://$PROJECT_DIR$/public/js/validation.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -13,6 +14,7 @@
       <root url="file://$PROJECT_DIR$/public/js/materialize.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/functions.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/classes.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/validation.min.js" />
     </CLASSES>
     <SOURCES />
   </library>

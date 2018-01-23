@@ -2,6 +2,8 @@ $(function () {
     setDeviceSelectionDropDown();
     setSizeAutoCompleteField();
     setImagePicker();
+    setSizeAutoCompleteFieldFocusValidation();
+    setOrientationRadioButtons();
 });
 
 
@@ -70,5 +72,61 @@ function setImagePicker() {
             };
             fr.readAsDataURL(file);
         });
+    });
+}
+
+var infoFormIsValid = false;
+function setSizeAutoCompleteFieldFocusValidation() {
+
+    var atcWidth = $('#atc_width');
+    var atcHeight = $('#atc_height');
+    var sAtcWidth = $('#s_atc_width');
+    var sAtcHeight = $('#s_atc_height');
+
+    function onFocusOut(atc, s) {
+        return function () {
+            if(!isSizeValid(atc.val())) {
+                s.text('Only match_parent, wrap_content or [NUMBER]dp is allowed');
+            }
+            else {
+                s.text(null);
+
+                if(isSizeValid(atcWidth.val()) && isSizeValid(atcHeight.val())) {
+                    var validate = validateBothSize(atcWidth.val(),atcHeight.val())
+                    if( validate !== true) {
+                        sAtcWidth.text(validate);
+                        sAtcHeight.text(validate);
+                    }
+                    else {
+                        infoFormIsValid = true;
+                        sAtcWidth.text(null);
+                        sAtcHeight.text(null);
+                    }
+                }
+            }
+        }
+    }
+
+    atcWidth.focusout(onFocusOut(atcWidth,sAtcWidth));
+    atcHeight.focusout(onFocusOut(atcHeight,sAtcHeight));
+}
+
+function setOrientationRadioButtons() {
+    var rbPortrait = $('#rb_orientation_portrait');
+    var rbLandscape = $('#rb_orientation_landscape');
+    var rbBoth = $('#rb_orientation_both');
+    var cbShowOrientation = $('#cb_show_orientation');
+    function changeRb() {
+        var isBothChecked = rbBoth.prop("checked");
+        cbShowOrientation.prop('checked',isBothChecked);
+        if(isBothChecked)
+            cbShowOrientation.prop('disabled','disabled');
+        else
+            cbShowOrientation.removeAttr('disabled');
+    }
+    rbPortrait.change(changeRb);
+    rbLandscape.change(changeRb);
+    rbBoth.change(changeRb);
+    cbShowOrientation.change(function () {
     });
 }

@@ -40,35 +40,37 @@
             <div class="input-field col s12">
                 <input type="text" id="atc_width" class="autocomplete">
                 <label for="atc_width">Width</label>
+                <span id="s_atc_width" class="helper-text red-text"></span>
             </div>
             <div class="input-field col s12">
                 <input type="text" id="atc_height" class="autocomplete">
                 <label for="atc_height">Height</label>
+                <span id="s_atc_height" class="helper-text  red-text"></span>
             </div>
             <!--radion buttons-->
             <div class="row">
                     <p class="col s4">
                         <label>
-                            <input class="with-gap"  name="group_orientation" type="radio" checked />
+                            <input class="with-gap"  name="group_orientation" type="radio" checked id="rb_orientation_portrait"/>
                             <span>Portrait</span>
                         </label>
                     </p>
                     <p class="col s4">
                         <label>
-                            <input class="with-gap" name="group_orientation" type="radio" />
+                            <input class="with-gap" name="group_orientation" type="radio" id="rb_orientation_landscape"/>
                             <span>Landscape</span>
                         </label>
                     </p>
                     <p class="col s4">
                         <label>
-                            <input class="with-gap" name="group_orientation" type="radio"  />
+                            <input class="with-gap" name="group_orientation" type="radio"  id="rb_orientation_both"/>
                             <span>Both</span>
                         </label>
                     </p>
             </div>
                 <p>
                     <label>
-                        <input class="filled-in" type="checkbox"/>
+                        <input class="filled-in" type="checkbox" id="cb_show_orientation"/>
                         <span>Show orientation resource qualifier in output</span>
                     </label>
                 </p>
@@ -82,6 +84,7 @@
 <script type="text/javascript" src="public/js/materialize.js"></script>
 <script type="text/javascript" src="public/js/classes.min.js"></script>
 <script type="text/javascript" src="public/js/functions.min.js"></script>
+<script type="text/javascript" src="public/js/validation.min.js"></script>
 <script type="text/javascript" src="public/js/controls.min.js"></script>
 
 </body>
