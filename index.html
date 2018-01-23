@@ -16,7 +16,7 @@
             <a href="#" class="brand-logo left"><i class="material-icons">developer_mode</i>AIResize</a>
             <ul class="right">
                 <li>
-                    <a id="dropdown_trigger_select_device" data-target="devices-list">Select Device<i class="material-icons right">arrow_drop_down</i></a>
+                    <a id="dropdown_trigger_select_device" data-target="devices-list"><span id="s_dropdown_selected_item">Select Device</span><i class="material-icons right">arrow_drop_down</i></a>
                     <ul id="devices-list" class="dropdown-content">
                         <li><a id="a-device-android">Android</a></li>
                         <li><a id="a-device-ios">IOS</a></li>
@@ -45,6 +45,33 @@
                 <input type="text" id="atc_height" class="autocomplete">
                 <label for="atc_height">Height</label>
             </div>
+            <!--radion buttons-->
+            <div class="row">
+                    <p class="col s4">
+                        <label>
+                            <input class="with-gap"  name="group_orientation" type="radio" checked />
+                            <span>Portrait</span>
+                        </label>
+                    </p>
+                    <p class="col s4">
+                        <label>
+                            <input class="with-gap" name="group_orientation" type="radio" />
+                            <span>Landscape</span>
+                        </label>
+                    </p>
+                    <p class="col s4">
+                        <label>
+                            <input class="with-gap" name="group_orientation" type="radio"  />
+                            <span>Both</span>
+                        </label>
+                    </p>
+            </div>
+                <p>
+                    <label>
+                        <input class="filled-in" type="checkbox"/>
+                        <span>Show orientation resource qualifier in output</span>
+                    </label>
+                </p>
             <a class="btn-floating btn-large waves-effect waves-light right margin_right"><i class="material-icons">done</i></a>
             </div>
     </div>

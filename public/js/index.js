@@ -1,10 +1,9 @@
 $(function () {
     var atcSizeData = getAtcSizeDataObject();
     var aPickImage = $('#a_pick_image');
-    var dropDownSelectDevice = $("#dropdown_trigger_select_device");
 
     //for dropdown
-    dropDownSelectDevice.dropdown({hover:false});
+    $("#dropdown_trigger_select_device").dropdown({hover:false});
 
 
     //for auto complete text width
@@ -13,7 +12,10 @@ $(function () {
     $('#atc_height').autocomplete(atcSizeData);
 
     $('#a-device-android').click(function () {
-        dropDownSelectDevice.val('aa')
+        $('#s_dropdown_selected_item').text($('#a-device-android').text())
+    });
+    $('#a-device-ios').click(function () {
+        $('#s_dropdown_selected_item').text($('#a-device-ios').text())
     });
 
 
