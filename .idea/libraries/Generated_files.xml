@@ -9,7 +9,7 @@
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/public/js/index.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/controls.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/materialize.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/functions.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/classes.min.js" />
