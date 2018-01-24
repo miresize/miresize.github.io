@@ -10,3 +10,9 @@ function pickImage(cb) {
         cb(files[0]);
     });
 }
+
+
+
+function loadImageFromJimp() {
+    
+}
