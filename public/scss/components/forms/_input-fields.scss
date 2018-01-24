@@ -330,7 +330,8 @@ textarea {
   margin-bottom: $input-margin-bottom;
   display: block;
   opacity: 1;
-  position: static;
+  position: absolute;
+  width: 100%;
 
   li {
     .highlight { color: #444; }

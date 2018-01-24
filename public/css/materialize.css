@@ -4858,7 +4858,8 @@ textarea {
   margin-bottom: 8px;
   display: block;
   opacity: 1;
-  position: static; }
+  position: absolute;
+  width: 100%; }
   .autocomplete-content li .highlight {
     color: #444; }
   .autocomplete-content li img {
