@@ -2,7 +2,12 @@
 .scale-transition {
   &.scale-out {
     transform: scale(0);
-    transition: transform .2s !important;
+    transition: transform .3s !important;
+  }
+
+  &.scale-out-instant {
+    transform: scale(0);
+    transition: transform 0s !important;
   }
 
   &.scale-in {

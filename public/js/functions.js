@@ -7,12 +7,6 @@ function pickImage(cb) {
         console.log(input.val());
         var tgt = event.target || window.event.srcElement;
         var files = tgt.files;
-        cb(files[0]);
+        cb(files[0],input.val());
     });
-}
-
-
-
-function loadImageFromJimp() {
-    
 }

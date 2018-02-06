@@ -1,9 +1,12 @@
+var imageResizer = new ImageResizer();
+var downloader = new Downloader();
 $(function () {
     setDeviceSelectionDropDown();
     setSizeAutoCompleteField();
     setImagePicker();
     setSizeAutoCompleteFieldFocusValidation();
     setOrientationRadioButtons();
+    setDoneButton();
 });
 
 
@@ -62,12 +65,12 @@ function setSizeAutoCompleteField() {
 function setImagePicker() {
     var aPickImage = $('#a_pick_image');
     aPickImage.click(function () {
-        pickImage(function (file) {
+        pickImage(function (file,path) {
             console.log(file);
             aPickImage.removeClass("pulse");
             var fr = new FileReader();
             fr.onload = function () {
-                console.log('loaded');
+                imageResizer.load(fr.result);
                 $('#img_source_img').attr('src',fr.result);
             };
             fr.readAsDataURL(file);
@@ -92,7 +95,7 @@ function setSizeAutoCompleteFieldFocusValidation() {
                 s.text(null);
 
                 if(isSizeValid(atcWidth.val()) && isSizeValid(atcHeight.val())) {
-                    var validate = validateBothSize(atcWidth.val(),atcHeight.val())
+                    var validate = validateBothSize(atcWidth.val(),atcHeight.val());
                     if( validate !== true) {
                         sAtcWidth.text(validate);
                         sAtcHeight.text(validate);
@@ -128,5 +131,27 @@ function setOrientationRadioButtons() {
     rbLandscape.change(changeRb);
     rbBoth.change(changeRb);
     cbShowOrientation.change(function () {
+    });
+}
+
+
+function setDoneButton() {
+    console.log('setDoneButton');
+    var aDone = $('#a_done');
+    var iDone = $('#i_done');
+    aDone.click(function () {
+        if(!imageResizer.isLoaded()) {
+            M.toast({html:'Source Image is not selected',displayLength:1500, classes:'toast-container'});
+            return;
+        }
+
+        aDone.addClass("scale-out");
+        imageResizer.resize().then(function (result) {
+            // aDone.removeClass("scale-out");
+            // iDone.text = 'download';
+            downloader.download(result);
+            console.log('image resized: ', result);
+        });
+
     });
 }

@@ -2,21 +2,25 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/public/js/ui-controls.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/jimp.min.js" />
-        <item url="file://$PROJECT_DIR$/public/js/controls.min.js" />
-        <item url="file://$PROJECT_DIR$/public/js/functions.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/materialize.min.js" />
-        <item url="file://$PROJECT_DIR$/public/js/classes.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/validation.min.js" />
+        <item url="file://$PROJECT_DIR$/public/js/classes.min.js" />
+        <item url="file://$PROJECT_DIR$/public/js/jszip.min.js" />
+        <item url="file://$PROJECT_DIR$/public/js/functions.min.js" />
+        <item url="file://$PROJECT_DIR$/public/js/image-worker.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/public/js/ui-controls.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/jimp.min.js" />
-      <root url="file://$PROJECT_DIR$/public/js/controls.min.js" />
-      <root url="file://$PROJECT_DIR$/public/js/functions.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/materialize.min.js" />
-      <root url="file://$PROJECT_DIR$/public/js/classes.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/validation.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/classes.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/jszip.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/functions.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/image-worker.min.js" />
     </CLASSES>
     <SOURCES />
   </library>
