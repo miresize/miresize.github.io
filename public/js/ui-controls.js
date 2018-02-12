@@ -1,5 +1,5 @@
 var imageResizer = new ImageResizer();
-var downloader = new Downloader();
+var zipper = new Zipper();
 $(function () {
     setDeviceSelectionDropDown();
     setSizeAutoCompleteField();
@@ -68,6 +68,7 @@ function setImagePicker() {
         pickImage(function (file,path) {
             console.log(file);
             aPickImage.removeClass("pulse");
+            $('#a_done').addClass("pulse");
             var fr = new FileReader();
             fr.onload = function () {
                 imageResizer.load(fr.result);
@@ -138,20 +139,28 @@ function setOrientationRadioButtons() {
 function setDoneButton() {
     console.log('setDoneButton');
     var aDone = $('#a_done');
-    var iDone = $('#i_done');
     aDone.click(function () {
         if(!imageResizer.isLoaded()) {
             M.toast({html:'Source Image is not selected',displayLength:1500, classes:'toast-container'});
             return;
         }
 
-        aDone.addClass("scale-out");
-        imageResizer.resize().then(function (result) {
-            // aDone.removeClass("scale-out");
-            // iDone.text = 'download';
-            downloader.download(result);
-            console.log('image resized: ', result);
-        });
+        imageResizer.resize()
+            .then(function (result) {
+                console.log(result);
+                return zipper.zip('etc',result)})
+            .then(function (zippedContent) {
+                console.log(zippedContent);
+                return Promise.resolve(saveAs(zippedContent,'exm.zip'))
+            })
+            .then(function () {
+                aDone.removeClass("pulse");
+                M.toast({html:'Images resized and downloaded',displayLength:1500, classes:'toast-container'});
+            })
+            .catch(function (err) {
+                console.log(err);
+                M.toast({html:err.toString(),displayLength:1500, classes:'toast-container'});
+            });
 
     });
 }

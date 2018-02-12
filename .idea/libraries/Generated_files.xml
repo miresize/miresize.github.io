@@ -3,6 +3,7 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/public/js/ui-controls.min.js" />
+        <item url="file://$PROJECT_DIR$/public/js/file-saver.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/jimp.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/materialize.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/validation.min.js" />
@@ -14,6 +15,7 @@
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/public/js/ui-controls.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/file-saver.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/jimp.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/materialize.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/validation.min.js" />
