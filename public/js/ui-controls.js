@@ -70,7 +70,10 @@ function setImagePicker() {
             $('#a_done').addClass("pulse");
             imageResizer.load(file)
                 .then(function (base64) {$('#img_source_img').attr('src',base64);})
-                .catch(function (err) {M.toast({html:err.toString(),displayLength:3000, classes:'toast-container'});})
+                .catch(function (err) {
+                    console.log(err);
+                    M.toast({html:err.toString(),displayLength:3000, classes:'toast-container'});
+                })
         });
     });
 }
