@@ -95,7 +95,8 @@ function ImageResizer() {
             canvas.width = wh.width;
             canvas.height = wh.height;
             ctx.drawImage(img,0,0,canvas.width,canvas.height);
-            var dataurl = canvas.toDataURL('image/'+_self.getFileExtension(),'base64');
+            var dataurl = canvas.toDataURL();
+            console.log(dataurl);
             dataurl = dataurl.split(',')[1];
             resolve(dataurl);
         });

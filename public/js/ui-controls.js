@@ -69,7 +69,11 @@ function setImagePicker() {
             aPickImage.removeClass("pulse");
             $('#a_done').addClass("pulse");
             imageResizer.load(file)
-                .then(function (base64) {$('#img_source_img').attr('src',base64);})
+                .then(function (base64) {
+                    $('#img_source_img').attr('src',base64);
+                    $('#t_name').val('ic_'+imageResizer.getFileNameWithOutExtension());
+
+                })
                 .catch(function (err) {
                     console.log(err);
                     M.toast({html:err.toString(),displayLength:3000, classes:'toast-container'});
@@ -83,8 +87,11 @@ function setSizeAutoCompleteFieldFocusValidation() {
 
     var atcWidth = $('#atc_width');
     var atcHeight = $('#atc_height');
+    var tName = $('#t_name');
+
     var sAtcWidth = $('#s_atc_width');
     var sAtcHeight = $('#s_atc_height');
+    var sTName = $('#s_t_name');
 
     function onFocusOut(atc, s) {
         return function () {
@@ -153,8 +160,9 @@ function setDoneButton() {
 
         {
             var ldpi,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi;
-            var name = imageResizer.getFileNameWithOutExtension();
-            var extension = imageResizer.getFileExtension();
+            var nameFromField = $('#t_name').val();
+            var name = nameFromField?nameFromField:imageResizer.getFileNameWithOutExtension();
+            var extension = 'png';
 
             imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_ldpi))
                 .then(function (result) {
