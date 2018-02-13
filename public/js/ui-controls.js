@@ -89,6 +89,7 @@ function setSizeAutoCompleteFieldFocusValidation() {
 
     function onFocusOut(atc, s) {
         return function () {
+            infoFormIsValid = false;
             if(!isSizeValid(atc.val())) {
                 s.text('Only match_parent, wrap_content or [NUMBER]dp is allowed');
             }
@@ -137,30 +138,61 @@ function setOrientationRadioButtons() {
 
 
 function setDoneButton() {
-    console.log('setDoneButton');
     var aDone = $('#a_done');
+    var atcWidth = $('#atc_width');
+    var atcHeight = $('#atc_height');
     aDone.click(function () {
         if(!imageResizer.isLoaded()) {
             M.toast({html:'Source Image is not selected',displayLength:1500, classes:'toast-container'});
             return;
         }
+        
+        if(!infoFormIsValid) {
+            M.toast({html:'Enter required fields',displayLength:1500, classes:'toast-container'});
+            return;
+        }
 
-        imageResizer.resize()
-            .then(function (result) {
-                console.log(result);
-                return zipper.zip('etc',result)})
-            .then(function (zippedContent) {
-                console.log(zippedContent);
-                return Promise.resolve(saveAs(zippedContent,'exm.zip'))
-            })
-            .then(function () {
-                aDone.removeClass("pulse");
-                M.toast({html:'Images resized and downloaded',displayLength:1500, classes:'toast-container'});
-            })
-            .catch(function (err) {
-                console.log(err);
-                M.toast({html:err.toString(),displayLength:1500, classes:'toast-container'});
-            });
+        {
+            var ldpi,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi;
+            var name = 'test';
+            var extension = 'png';
+
+            imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_ldpi))
+                .then(function (result) {
+                    ldpi = result;
+                    return imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_mdpi))
+                })
+                .then(function (result) {
+                    mdpi = result;
+                    return imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_hdpi))
+                })
+                .then(function (result) {
+                    hdpi = result;
+                    return imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_xhdpi))
+                })
+                .then(function (result) {
+                    xhdpi = result;
+                    return imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_xxhdpi))
+                })
+                .then(function (result) {
+                    xxhdpi = result;
+                    return imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_xxxhdpi))
+                })
+                .then(function (result) {
+                    xxxhdpi = result;
+                    return zipper.zip(name,extension,ldpi,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi)})
+                .then(function (zippedContent) {
+                    return Promise.resolve(saveAs(zippedContent,name+'.zip'))
+                })
+                .then(function () {
+                    aDone.removeClass("pulse");
+                    M.toast({html:'Images resized and downloaded',displayLength:1500, classes:'toast-container'});
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    M.toast({html:err.toString(),displayLength:1500, classes:'toast-container'});
+                });
+        }
 
     });
 }
