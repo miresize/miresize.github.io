@@ -11,14 +11,60 @@ var screenTypes = {
 function ImageResizer() {
     var img = new Image();
     var loaded = false;
+    var _file;
 
 
     this.load = function (file) {
-        img.src = file;
+        _file = file;
+        _self = this;
+        return new Promise(function (resolve, reject) {
+            var ext = _self.getFileExtension();
+            var fileName = _self.getFileNameWithOutExtension();
+            if(ext !== "jpg" && ext !== "jpeg" && ext !== "png")
+                throw new Error('Invalid image format');
+            if (fileName === "")
+                throw new Error('Empty file name');
+
+            var fr = new FileReader();
+            fr.onload = function () {
+                img.src = fr.result;
+                resolve(fr.result)
+            };
+            fr.onerror = function (err) {
+                reject(err)
+            };
+            fr.onabort = function () {
+                reject(new Error('Unexpected error. Try again.'))
+            };
+            fr.readAsDataURL(file);
+        });
     };
 
     this.isLoaded = function () {
         return loaded;
+    };
+
+    this.getFileNameWithOutExtension = function () {
+        var splitFileName = _file.name.split('.');
+        if(splitFileName.length>1)
+        {   var fileName = null;
+            for(i=0 ;i<splitFileName.length-1 ; i++) {
+                if(fileName===null)
+                    fileName = splitFileName[i];
+                else
+                    fileName+='.'+splitFileName[i];
+            }
+            return fileName.toLowerCase().replace(/[^0-9a-z]{1,}/g,"_");
+        }
+        else return _file.name;
+    };
+
+    this.getFileExtension = function () {
+        var splitFileName = _file.name.split('.');
+        if(splitFileName.length>1)
+            return splitFileName[splitFileName.length-1];
+        else
+            return "";
     };
 
     img.onload = function () {
@@ -41,6 +87,7 @@ function ImageResizer() {
 
 
     this.resize = function (wh) {
+        var _self = this;
         return new Promise(function (resolve, reject) {
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext("2d");
@@ -48,7 +95,7 @@ function ImageResizer() {
             canvas.width = wh.width;
             canvas.height = wh.height;
             ctx.drawImage(img,0,0,canvas.width,canvas.height);
-            var dataurl = canvas.toDataURL('image/png','base64');
+            var dataurl = canvas.toDataURL('image/'+_self.getFileExtension(),'base64');
             dataurl = dataurl.split(',')[1];
             resolve(dataurl);
         });

@@ -65,16 +65,12 @@ function setSizeAutoCompleteField() {
 function setImagePicker() {
     var aPickImage = $('#a_pick_image');
     aPickImage.click(function () {
-        pickImage(function (file,path) {
-            console.log(file);
+        pickImage(function (file) {
             aPickImage.removeClass("pulse");
             $('#a_done').addClass("pulse");
-            var fr = new FileReader();
-            fr.onload = function () {
-                imageResizer.load(fr.result);
-                $('#img_source_img').attr('src',fr.result);
-            };
-            fr.readAsDataURL(file);
+            imageResizer.load(file)
+                .then(function (base64) {$('#img_source_img').attr('src',base64);})
+                .catch(function (err) {M.toast({html:err.toString(),displayLength:3000, classes:'toast-container'});})
         });
     });
 }
@@ -143,19 +139,19 @@ function setDoneButton() {
     var atcHeight = $('#atc_height');
     aDone.click(function () {
         if(!imageResizer.isLoaded()) {
-            M.toast({html:'Source Image is not selected',displayLength:1500, classes:'toast-container'});
+            M.toast({html:'',displayLength:3000, classes:'toast-container'});
             return;
         }
-        
+
         if(!infoFormIsValid) {
-            M.toast({html:'Enter required fields',displayLength:1500, classes:'toast-container'});
+            M.toast({html:'Enter required fields',displayLength:3000, classes:'toast-container'});
             return;
         }
 
         {
             var ldpi,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi;
-            var name = 'test';
-            var extension = 'png';
+            var name = imageResizer.getFileNameWithOutExtension();
+            var extension = imageResizer.getFileExtension();
 
             imageResizer.resize(imageResizer.getDpi(atcWidth.val(),atcHeight.val(),screenTypes.drawable_ldpi))
                 .then(function (result) {
@@ -186,11 +182,11 @@ function setDoneButton() {
                 })
                 .then(function () {
                     aDone.removeClass("pulse");
-                    M.toast({html:'Images resized and downloaded',displayLength:1500, classes:'toast-container'});
+                    M.toast({html:'Images resized and downloaded',displayLength:3000, classes:'toast-container'});
                 })
                 .catch(function (err) {
                     console.log(err);
-                    M.toast({html:err.toString(),displayLength:1500, classes:'toast-container'});
+                    M.toast({html:err.toString(),displayLength:3000, classes:'toast-container'});
                 });
         }
 
